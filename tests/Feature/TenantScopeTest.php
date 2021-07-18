@@ -19,14 +19,12 @@ class TenantScopeTest extends TestCase
 
         $this->artisan('make:model Test -m');
 
-        $filename = $now->year . '_' . $now->format('m') . '_' . $now->format('d') . '_'
-            . $now->format('H') . $now->format('i') . $now->format('s')
-            . '_create_tests_table.php';
+        $filename = database_path('migrations/' . $now->format('Y_m_d_His') . '_create_tests_table.php');
 
-        $this->assertTrue(File::exists(database_path('migrations/' . $filename)));
-        $this->assertStringContainsString('$table->unsignedBigInteger(\'tenant_id\')->index();', File::get(database_path('migrations/' . $filename)));
+        $this->assertTrue(File::exists($filename));
+        $this->assertStringContainsString('$table->unsignedBigInteger(\'tenant_id\')->index();', File::get($filename));
 
-        File::delete(database_path('migrations/' . $filename));
+        File::delete($filename);
         File::delete(app_path('Models/Test.php'));
     }
 
