@@ -43,12 +43,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, BelongsToTenant;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'role',
-        'password',
-    ];
+    protected $guarded = [];
 
     protected $hidden = [
         'password',
