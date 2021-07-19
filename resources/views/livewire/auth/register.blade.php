@@ -15,69 +15,34 @@
                 <div class="mt-8">
                     <div class="mt-6">
                         <form wire:submit.prevent="register" class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700">
-                                    Name
-                                </label>
-                                <div class="mt-1">
-                                    <input
-                                        wire:model="name"
-                                        id="name"
-                                        name="name"
-                                        type="text"
-                                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        autocomplete="name" required
-                                    >
-                                </div>
-                            </div>
+                            <x-text-input
+                                wire:model.debounce.100ms="name"
+                                label="Name"
+                                required="true"
+                                placeholder="Ian"
+                            />
 
-                            <div>
-                                <label for="companyName" class="block text-sm font-medium text-gray-700">
-                                    Company Name
-                                </label>
-                                <div class="mt-1">
-                                    <input
-                                        wire:model="companyName"
-                                        id="companyName"
-                                        name="companyName"
-                                        type="text"
-                                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        autocomplete="companyName" required
-                                    >
-                                </div>
-                            </div>
+                            <x-text-input
+                                wire:model.debounce.100ms="companyName"
+                                label="Company Name"
+                                required="true"
+                                placeholder="My Company"
+                            />
 
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">
-                                    Email address
-                                </label>
-                                <div class="mt-1">
-                                    <input
-                                        wire:model="email"
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        autocomplete="email" required
-                                    >
-                                </div>
-                            </div>
+                            <x-text-input
+                                wire:model.debounce.100ms="email"
+                                label="Email"
+                                type="email"
+                                required="true"
+                                placeholder="email@example.net"
+                            />
 
-                            <div class="space-y-1">
-                                <label for="password" class="block text-sm font-medium text-gray-700">
-                                    Password
-                                </label>
-                                <div class="mt-1">
-                                    <input
-                                        wire:model="password"
-                                        id="password"
-                                        name="password"
-                                        type="password"
-                                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        autocomplete="current-password" required
-                                    >
-                                </div>
-                            </div>
+                            <x-text-input
+                                wire:model.debounce.100ms="password"
+                                label="Password"
+                                type="password"
+                                required="true"
+                            />
 
                             <div>
                                 <button type="submit"
