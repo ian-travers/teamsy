@@ -40,13 +40,29 @@
                 </label>
                 <div class="flex flex-items-center">
                     <div class="flex-shrink-0 h-10 w-10 mr-4">
-                        <svg class="h-10 w-10 text-gray-300 rounded-full" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
+                        @if($photo)
+                            <div class="flex-shrink-0 h-10 w-10">
+                                <img class="h-10 w-10 rounded-full"
+                                     src="{{ $photo->temporaryUrl() }}"
+                                     alt="">
+                            </div>
+
+                        @else
+                            <svg class="h-10 w-10 text-gray-300 rounded-full" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        @endif
                     </div>
                     <div>
-                        <input type="file">
+                        <input type="file" wire:model="photo">
+                        <button
+                            wire:click="save"
+                            type="button"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
+                        >Save Photo
+                        </button>
+                        @error('photo') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                     </div>
                 </div>
             </div>
