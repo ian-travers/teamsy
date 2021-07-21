@@ -23,6 +23,7 @@ use Illuminate\Notifications\Notifiable;
  * @property int|null $tenant_id
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @property-read \App\Models\Tenant|null $tenant
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
