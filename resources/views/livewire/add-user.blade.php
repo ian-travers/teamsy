@@ -56,12 +56,6 @@
                     </div>
                     <div>
                         <input type="file" wire:model="photo">
-                        <button
-                            wire:click="save"
-                            type="button"
-                            class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
-                        >Save Photo
-                        </button>
                         @error('photo') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                     </div>
                 </div>
@@ -88,6 +82,9 @@
                 </select>
             </div>
 
+            @if(session()->has('success'))
+                <div class="text-green-500">{{ session('success') }}</div>
+            @endif
 
         </div>
 
