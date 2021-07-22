@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * App\Models\User
@@ -15,6 +16,10 @@ use Illuminate\Notifications\Notifiable;
  * @property string $name
  * @property string $email
  * @property string $role
+ * @property string|null $photo
+ * @property string|null $department
+ * @property string|null $title
+ * @property int $status
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
@@ -29,14 +34,18 @@ use Illuminate\Notifications\Notifiable;
  * @method static Builder|User newQuery()
  * @method static Builder|User query()
  * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereDepartment($value)
  * @method static Builder|User whereEmail($value)
  * @method static Builder|User whereEmailVerifiedAt($value)
  * @method static Builder|User whereId($value)
  * @method static Builder|User whereName($value)
  * @method static Builder|User wherePassword($value)
+ * @method static Builder|User wherePhoto($value)
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereRole($value)
+ * @method static Builder|User whereStatus($value)
  * @method static Builder|User whereTenantId($value)
+ * @method static Builder|User whereTitle($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
@@ -54,4 +63,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function avatarUrl(): string
+    {
+        if($this->photo) {
+            return Storage::disk('public')->url($this->photo);
+        }
+
+        return '';
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role == 'Admin';
+    }
+
+    public function isHR(): string
+    {
+        return $this->role == 'Human Resources';
+    }
 }
