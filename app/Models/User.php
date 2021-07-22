@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Storage;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int|null $tenant_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Document[] $documents
+ * @property-read int|null $documents_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\Models\Tenant|null $tenant
@@ -75,11 +77,32 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->role == 'Admin';
+        return $this->role == 'admin';
     }
 
-    public function isHR(): string
+    public function isHR(): bool
     {
-        return $this->role == 'Human Resources';
+        return $this->role == 'human resources';
     }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+
+    public function applicationUrl(): string
+    {
+        if ($this->application()) {
+            return url('documents/' . $this->id . '/' . $this->application()->filename);
+        };
+
+        return '#';
+    }
+
+    protected function application()
+    {
+        return $this->documents()->where('type', 'application')->first();
+    }
+
+
 }

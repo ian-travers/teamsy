@@ -61,6 +61,19 @@
                 </div>
             </div>
 
+            <div class="col-span-6">
+                <label class="block text-sm leading-5 font-medium text-gray-700 mb-2">
+                    Application
+                </label>
+                <div class="flex flex-items-center">
+                    <div>
+                        <input wire:model="application" type="file">
+                    </div>
+                </div>
+                @error('application')
+                <div class="text-sm text-red-500 mt-2">{{ $message }}</div> @enderror
+            </div>
+
             <div class="col-span-6 sm:col-span-3">
                 <label for="status" class="block text-sm font-medium leading-5 text-gray-700">Status</label>
                 <select wire:model="status"
