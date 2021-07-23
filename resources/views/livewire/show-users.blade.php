@@ -70,7 +70,15 @@
                                              alt="avatar">
                                     </div>
                                     <div class="ml-4">
-                                        <div class="text-sm leading-5 font-medium text-gray-900">{{$user->name}}</div>
+                                        <div>
+                                            <span
+                                                class="text-sm leading-5 font-medium text-gray-900">{{$user->name}}</span>
+                                            @if($super)
+                                                <button wire:click="impersonate({{ $user->id }})"
+                                                        class="text-xs text-indigo-600 ml-1">Impersonate
+                                                </button>
+                                            @endif
+                                        </div>
                                         <div class="text-sm leading-5 text-gray-500">{{$user->email}}</div>
                                     </div>
                                 </div>
