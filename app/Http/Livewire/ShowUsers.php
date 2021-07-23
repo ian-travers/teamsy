@@ -25,6 +25,10 @@ class ShowUsers extends Component
 
     public function impersonate($userId)
     {
+        if (!is_null(auth()->user()->tenant_id)) {
+            return;
+        }
+
         $originalId = auth()->id();
 
         session()->put('impersonate', $originalId);
@@ -48,7 +52,7 @@ class ShowUsers extends Component
     {
         $query = User::search($this->search)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc');
-        if($this->super && $this->selectedTenant) {
+        if ($this->super && $this->selectedTenant) {
             $query->where('tenant_id', $this->selectedTenant);
         }
 

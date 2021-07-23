@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImpersonationController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Passwords\Confirm;
 use App\Http\Livewire\Auth\Passwords\Email;
@@ -40,6 +41,8 @@ Route::middleware('auth')->group(function () {
         ->name('password.confirm');
 
     Route::get('documents/{user}/{filename}', [DocumentController::class, 'show']);
+
+    Route::get('leave0impersonation', [ImpersonationController::class, 'leave'])->name('leave-impersonation');
 });
 
 Route::middleware('auth')->group(function () {
