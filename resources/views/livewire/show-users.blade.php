@@ -42,11 +42,13 @@
                 <table class="min-w-full">
                     <thead>
                     <tr>
-                        <x-th label="Name" value="name" :canSort="true" :sortField="$sortField" :sortAsc="$sortAsc" />
-                        <x-th label="Title" value="title" :canSort="true" :sortField="$sortField" :sortAsc="$sortAsc" />
-                        <x-th label="Status" value="status" :canSort="false" :sortField="$sortField" :sortAsc="$sortAsc" />
-                        <x-th label="Role" value="role" :canSort="true" :sortField="$sortField" :sortAsc="$sortAsc" />
-                        <x-th label="Application" value="application" :canSort="false" :sortField="$sortField" :sortAsc="$sortAsc" />
+                        <x-th label="Name" value="name" :canSort="true" :sortField="$sortField" :sortAsc="$sortAsc"/>
+                        <x-th label="Title" value="title" :canSort="true" :sortField="$sortField" :sortAsc="$sortAsc"/>
+                        <x-th label="Status" value="status" :canSort="false" :sortField="$sortField"
+                              :sortAsc="$sortAsc"/>
+                        <x-th label="Role" value="role" :canSort="true" :sortField="$sortField" :sortAsc="$sortAsc"/>
+                        <x-th label="Application" value="application" :canSort="false" :sortField="$sortField"
+                              :sortAsc="$sortAsc"/>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">
                             <span class="flex rounded-md justify-end">
                                 <a href="{{route('users.create')}}" type="button"
@@ -63,16 +65,9 @@
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-10 w-10">
-                                        @if($user->photo)
-                                            <img class="h-10 w-10 rounded-full"
-                                                 src="{{$user->avatarUrl()}}"
-                                                 alt="avatar">
-                                        @else
-                                            <svg class="h-10 w-10 text-gray-300 rounded-full" fill="currentColor" viewBox="0 0 24 24">
-                                                <path
-                                                    d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
-                                            </svg>
-                                        @endif
+                                        <img class="h-10 w-10 rounded-full"
+                                             src="{{$user->avatarUrl()}}"
+                                             alt="avatar">
                                     </div>
                                     <div class="ml-4">
                                         <div class="text-sm leading-5 font-medium text-gray-900">{{$user->name}}</div>
@@ -103,7 +98,8 @@
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                 <div class="flex justify-center">
                                     @if($application = $user->documents->where('type', 'application')->first())
-                                        <a href="{{$application->privateUrl()}}" target="_blank">{{--open new window svg--}}
+                                        <a href="{{$application->privateUrl()}}"
+                                           target="_blank">{{--open new window svg--}}
                                             <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20">
                                                 <path
                                                     d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>

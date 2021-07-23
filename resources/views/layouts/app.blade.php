@@ -137,16 +137,9 @@
                     <a href="#" class="flex-shrink-0 w-full group block">
                         <div class="flex items-center">
                             <div>
-                                @if(request()->user()->photo)
-                                    <img class="h-10 w-10 rounded-full"
-                                         src="{{request()->user()->avatarUrl()}}"
-                                         alt="avatar">
-                                @else
-                                    <svg class="h-10 w-10 text-gray-300 rounded-full" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
-                                    </svg>
-                                @endif
+                                <img class="h-10 w-10 rounded-full"
+                                     src="{{request()->user()->avatarUrl()}}"
+                                     alt="avatar">
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm leading-5 font-medium text-white">
@@ -167,7 +160,8 @@
                     class="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
                     aria-label="Open sidebar">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
             </div>

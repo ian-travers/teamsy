@@ -72,7 +72,7 @@ class User extends Authenticatable
             return Storage::disk('public')->url($this->photo);
         }
 
-        return '';
+        return 'https://avatars.dicebear.com/api/initials/' . $this->name . '.svg';
     }
 
     public function isAdmin(): bool
