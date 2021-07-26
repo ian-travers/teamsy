@@ -4,8 +4,6 @@
 
 @section('content')
     <div class="py-4">
-        <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
-            Something is here
-        </div>
+        <x-login-chart />
     </div>
 @endsection

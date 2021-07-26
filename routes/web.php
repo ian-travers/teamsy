@@ -11,7 +11,22 @@ use App\Http\Livewire\Auth\Passwords\Email;
 use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+
+Route::get('load-logins', function () {
+    $users = User::withoutGlobalScopes()->whereNotNull('tenant_id')->get();
+
+    $users->map(function (User $user) {
+        \App\Models\Login::factory()->create([
+            'user_id' => $user->id,
+            'tenant_id' => $user->tenant_id,
+            'created_at' => now()->subHours(rand(0, 2)),
+        ]);
+    });
+
+    return 'Loaded.';
+});
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
@@ -42,7 +57,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('documents/{user}/{filename}', [DocumentController::class, 'show']);
 
-    Route::get('leave0impersonation', [ImpersonationController::class, 'leave'])->name('leave-impersonation');
+    Route::get('leave-impersonation', [ImpersonationController::class, 'leave'])->name('leave-impersonation');
 });
 
 Route::middleware('auth')->group(function () {
