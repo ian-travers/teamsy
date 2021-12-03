@@ -33,7 +33,8 @@ class AddUser extends Component
             'application' => 'nullable|file|mimes:pdf|max:512',
         ]);
 
-        $filename = $this->photo ? $this->photo->store('photos', 'public') : null;
+//        $filename = $this->photo ? $this->photo->store('photos', 'public') : null;
+        $filename = $this->photo ? $this->photo->store('photos', 's3-public') : null;
 
 
         $user = User::create([

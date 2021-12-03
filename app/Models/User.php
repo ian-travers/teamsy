@@ -69,7 +69,7 @@ class User extends Authenticatable
     public function avatarUrl(): string
     {
         if($this->photo) {
-            return Storage::disk('public')->url($this->photo);
+            return Storage::disk('s3-public')->url($this->photo);
         }
 
         return 'https://avatars.dicebear.com/api/initials/' . $this->name . '.svg';
