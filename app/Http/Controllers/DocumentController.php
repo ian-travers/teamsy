@@ -16,7 +16,7 @@ class DocumentController extends Controller
         abort_unless(request()->user()->isAdmin(), Response::HTTP_FORBIDDEN);
 
         if ($document->extension == 'pdf') {
-            return response(Storage::disk('public')->get('documents/' . $user->id . '/' . $filename))
+            return response(Storage::disk('s3')->get("documents/{$user->id}/$filename"))
                 ->header('Content-Type', 'application/pdf');
         }
     }

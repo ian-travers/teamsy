@@ -33,7 +33,6 @@ class AddUser extends Component
             'application' => 'nullable|file|mimes:pdf|max:512',
         ]);
 
-//        $filename = $this->photo ? $this->photo->store('photos', 'public') : null;
         $filename = $this->photo ? $this->photo->store('photos', 's3-public') : null;
 
 
@@ -62,7 +61,7 @@ class AddUser extends Component
             : null;
 
         if ($filename) {
-            $this->application->storeAs('documents/' . $user->id, $filename, 'public');
+            $this->application->storeAs("documents/{$user->id}/", $filename, 's3');
 
             $user->documents()->create([
                 'type' => 'application',
@@ -71,8 +70,6 @@ class AddUser extends Component
                 'size' => $size,
             ]);
         }
-
-
 
         session()->flash('success', 'We did it!');
     }

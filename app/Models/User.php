@@ -92,11 +92,9 @@ class User extends Authenticatable
 
     public function applicationUrl(): string
     {
-        if ($this->application()) {
-            return url('documents/' . $this->id . '/' . $this->application()->filename);
-        };
-
-        return '#';
+        return $this->application()
+            ? url("documents/{$this->id}/{$this->application()->filename}")
+            : '#';
     }
 
     protected function application()
