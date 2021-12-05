@@ -2,3 +2,9 @@
 
 
 ## Teamsy()
+
+Once installed just issue this artisan command:
+``` bash
+php artisan db:seed
+```
+That creates demo data to demonstrate how the application works.

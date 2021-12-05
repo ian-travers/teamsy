@@ -28,7 +28,7 @@ class DemoSeeder extends Seeder
 
         User::factory()->create([
             'tenant_id' => null,
-            'email' => 'admin@admin.com',
+            'email' => 'newbie@teamsy.lan',
         ]);
     }
 }
