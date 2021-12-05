@@ -14,6 +14,6 @@ class ImpersonationController extends Controller
         auth()->login(User::withoutGlobalScope(TenantScope::class)->find(session('impersonate')));
         session()->forget('impersonate');
 
-        return redirect('/');
+        return redirect('/team');
     }
 }
